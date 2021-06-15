@@ -1,5 +1,11 @@
 package WebApp;
 
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static spark.Spark.*;
 
 public class App {
@@ -33,22 +39,43 @@ public class App {
         });
 
         post("/greet",(request,response)->{
-            if(request.queryParams("username").equals("username")){
-                 return    "Hello" + request.queryParams("username");
+            if(request.queryParams("username").isEmpty()){
+                 return "Hello! ";
             }else{
-               return  "Hello!";
+                return    "Hello" + request.queryParams("username");
             }
 
         });
 
         get("/hello", (req, res) -> {
-            return "";
-        });
+
+            Map<String, Object> map = new HashMap<>();
+            return new ModelAndView(map, "hello.handlebars");
+
+        }, new HandlebarsTemplateEngine());
 
 
         post("/hello", (req, res) -> {
-            return "";
-        });
+
+            Map<String, Object> map = new HashMap<>();
+            String lang = req.queryParams("language");
+            String greeting = req.queryParams("username");
+            String msg = new String();
+
+            if(lang.equalsIgnoreCase("Xhosa")){
+                msg = "Molo! " + greeting;
+            }else if(lang.equalsIgnoreCase("Sotho")){
+                msg = "Dumela! " + greeting;
+            }else if(lang.equalsIgnoreCase("Afrikaans")){
+                msg = "Halo! " + greeting;
+            }
+
+            // put it in the map which is passed to the template - the value will be merged into the template
+            map.put("greeting", msg);
+
+            return new ModelAndView(map, "hello.handlebars");
+
+        }, new HandlebarsTemplateEngine());
     }
 
 

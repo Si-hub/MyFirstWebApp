@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Greeting App</title>
 </head>
 <body>
 <h1>Greet me App!</h1>
@@ -13,9 +13,30 @@
 <form action="/hello" method="post" >
     <input type="text" name="username">
     <input type="submit" >
+    <br>
+    <br>
+    <div>
+        <input type="radio" id="language" name="language" value="Xhosa">
+        <label for="huey">Xhosa</label>
+
+        <input type="radio" id="language" name="language" value="Sotho">
+        <label for="huey">Sotho</label>
+
+        <input type="radio" id="language" name="language" value="Afrikaans">
+        <label for="huey">Afrikaans</label>
+    </div>
 </form>
+<br>
 
 {{greeting}}
+
+<div>
+    <ul>
+        {{#each users}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+</div>
 
 </body>
 </html>
