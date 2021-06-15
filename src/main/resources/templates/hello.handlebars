@@ -1,4 +1,4 @@
-<<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Greet App</h1>
+<h1>Greet me App!</h1>
 
+<form action="/hello" method="post" >
+    <input type="text" name="username">
+    <input type="submit" >
+</form>
+
+{{greeting}}
 
 </body>
 </html>

@@ -20,7 +20,16 @@ public class App {
 
         get("/greet/:username/language/:language", (request, response) -> {
             // Show something
-            return null;
+            if(request.params(":language").equals("Xhosa")){
+                return "Molo " + request.params("username");
+            }else if(request.params(":language").equals("Sotho")){
+                return "Dumela! " + request.params("username");
+            }else if(request.params(":language").equals("Afrikaans")){
+                return  "Halo " + request.params("username");
+            }else{
+               return  "Hallow!";
+            }
+
         });
 
         post("/greet",(request,response)->{
